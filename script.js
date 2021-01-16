@@ -1,30 +1,24 @@
 const choiceArray = ["Rock", "Paper", "Scissors"];
 var roundWinner = '';
-
+var roundNumber = 1;
 
 function computerPlay() {
   return choiceArray[~~(Math.random() * choiceArray.length)];
 }
 
 var playerSelection;
+const buttons = document.querySelectorAll('button');
 
-
-function getInput() {
-  console.log('What do you choose? Rock, paper, or scissors?');
-  const buttons = document.querySelectorAll('button');
-
-  buttons.forEach((button) => {
-    button.addEventListener('click', () => {
-      playerSelection = button.id;
-      console.log(playerSelection);
-    });
-  });          return playerSelection;
-  }
+buttons.forEach((button) => {
+  button.addEventListener('click', () => {
+    playerSelection = button.id;
+    console.log(playerSelection);
+  });
+});
 
 function playRound(computerSelection) {
 
   computerSelection = computerPlay().toLowerCase();
-  playerSelection = getInput();
   /*draw case*/
   if (playerSelection == computerSelection) {
     console.log('It\'s a draw!');
@@ -68,24 +62,24 @@ function playRound(computerSelection) {
     roundWinner = 'computer';
     console.log('You Lose! Paper beats Rock');
   }
+  roundNumber++;
 }
 
 function game() {
   /**Initializing counter for round wins**/
   var scorePlayer = 0;
   var scoreComputer = 0;
-  var roundNumber = 1;
-    console.log('Round ' + roundNumber + ':');
-    playRound();
-    if (roundWinner == 'player') {
-      scorePlayer = scorePlayer + 1;
-    }
-    if (roundWinner == 'computer') {
-      scoreComputer = scoreComputer + 1;
-    }
 
-    roundNumber++;
-    console.log('Current score>> Player : ' + scorePlayer.toString() + ' | Computer: ' + scoreComputer.toString());
+  console.log('Round ' + roundNumber + ':');
+  playRound();
+  if (roundWinner == 'player') {
+    scorePlayer = scorePlayer + 1;
+  }
+  if (roundWinner == 'computer') {
+    scoreComputer = scoreComputer + 1;
+  }
+
+  console.log('Current score>> Player : ' + scorePlayer.toString() + ' | Computer: ' + scoreComputer.toString());
 
   if (scorePlayer == scoreComputer) {
     console.log('The game is drawn!');
@@ -95,8 +89,6 @@ function game() {
     console.log('Unlucky, you lost the game!');
   }
 }
-
-
 
 
 game();
