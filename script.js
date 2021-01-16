@@ -30,33 +30,41 @@ function playRound(computerSelection) {
     console.log('It\'s a draw!');
     roundWinner = '';
   }
+
+  /*
+  <button id="1">Rock</button>
+  <button id="2">Paper</button>
+  <button id="3">Scissors</button>
+  */
+
+
   /*player wins*/
-  if (playerSelection == 'rock' && computerSelection == 'scissors') {
+  if (playerSelection == 1 && computerSelection == 'scissors') {
     roundWinner = 'player';
     console.log('You Win! Rock beats Scissors');
   }
 
-  if (playerSelection == 'scissors' && computerSelection == 'paper') {
+  if (playerSelection == 3 && computerSelection == 'paper') {
     roundWinner = 'player';
     console.log('You Win! Scissors beat Paper');
   }
 
-  if (playerSelection == 'paper' && computerSelection == 'rock') {
+  if (playerSelection == 2 && computerSelection == 'rock') {
     roundWinner = 'player';
     console.log('You Win! Paper beats Rock');
   }
   /*player loses*/
-  if (computerSelection == 'rock' && playerSelection == 'scissors') {
+  if (computerSelection == 'rock' && playerSelection == 3) {
     roundWinner = 'computer';
     console.log('You Lose! Rock beats Scissors');
   }
 
-  if (computerSelection == 'scissors' && playerSelection == 'paper') {
+  if (computerSelection == 'scissors' && playerSelection == 2) {
     roundWinner = 'computer';
     console.log('You Lose! Scissors beat Paper');
   }
 
-  if (computerSelection == 'paper' && playerSelection == 'rock') {
+  if (computerSelection == 'paper' && playerSelection == 1) {
     roundWinner = 'computer';
     console.log('You Lose! Paper beats Rock');
   }
