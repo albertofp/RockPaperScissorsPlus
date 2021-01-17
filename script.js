@@ -6,6 +6,7 @@ var scorePlayer = 0;
 var scoreComputer = 0;
 
 let gameWinner = document.querySelector('#game-winner');
+let roundMessage = document.querySelector('#round-message');
 
 function computerPlay() {
   return choiceArray[~~(Math.random() * choiceArray.length)];
@@ -32,7 +33,7 @@ function playRound() {
   /*draw case*/
   console.log(computerSelection);
   if (playerSelection == computerSelection) {
-    console.log('It\'s a draw!');
+    roundMessage.textContent = 'It\'s a draw!';
     roundWinner = '';
   }
 
@@ -46,32 +47,32 @@ function playRound() {
   /*player wins*/
   if (playerSelection == 1 && computerSelection == 'scissors') {
     roundWinner = 'player';
-    console.log('You Win! Rock beats Scissors');
+    roundMessage.textContent ='You Win! Rock beats Scissors';
   }
 
   if (playerSelection == 3 && computerSelection == 'paper') {
     roundWinner = 'player';
-    console.log('You Win! Scissors beat Paper');
+    roundMessage.textContent = 'You Win! Scissors beat Paper';
   }
 
   if (playerSelection == 2 && computerSelection == 'rock') {
     roundWinner = 'player';
-    console.log('You Win! Paper beats Rock');
+    roundMessage.textContent = 'You Win! Paper beats Rock';
   }
   /*player loses*/
   if (computerSelection == 'rock' && playerSelection == 3) {
     roundWinner = 'computer';
-    console.log('You Lose! Rock beats Scissors');
+    roundMessage.textContent = 'You Lose! Rock beats Scissors';
   }
 
   if (computerSelection == 'scissors' && playerSelection == 2) {
     roundWinner = 'computer';
-    console.log('You Lose! Scissors beat Paper');
+    roundMessage.textContent = 'You Lose! Scissors beat Paper';
   }
 
   if (computerSelection == 'paper' && playerSelection == 1) {
     roundWinner = 'computer';
-    console.log('You Lose! Paper beats Rock');
+    roundMessage.textContent = 'You Lose! Paper beats Rock';
   }
   roundNumber++;
 }
@@ -94,10 +95,13 @@ function game() {
     console.log('Current score>> Player : ' + scorePlayer.toString() + ' | Computer: ' + scoreComputer.toString());
   } else
   if (scorePlayer == scoreComputer) {
+    roundMessage.textContent = '';
     gameWinner.textContent = 'The game is drawn!';
   } else if (scorePlayer > scoreComputer) {
-    gameWinner.textContent ='Congratulations, you win the game!';
+    roundMessage.textContent = '';
+    gameWinner.textContent = 'Congratulations, you win the game!';
   } else {
+    roundMessage.textContent = '';
     gameWinner.textContent = 'Unlucky, you lost the game!';
   }
   let playerTotalScore = document.querySelector("#player-score");
