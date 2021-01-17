@@ -9,17 +9,19 @@ function computerPlay() {
 var playerSelection;
 const buttons = document.querySelectorAll('button');
 
-
 /*Add a do-while loop around game so it only goes until someone has 5 wins*/
 
 
 buttons.forEach((button) => {
   button.addEventListener('click', () => {
     playerSelection = button.id;
-    game();
+    do{
+      game();
+    }while(roundNumber<6);
     console.log(playerSelection);
   });
 });
+
 
 function playRound() {
 
@@ -96,4 +98,9 @@ function game() {
   } else {
     console.log('Unlucky, you lost the game!');
   }
+  let playerTotalScore = document.querySelector("#player-score");
+  playerTotalScore.textContent = scorePlayer;
+  let computerTotalScore = document.querySelector("#computer-score");
+  computerTotalScore.textContent = scoreComputer;
+
 }
