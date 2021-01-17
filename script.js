@@ -2,6 +2,11 @@ const choiceArray = ["Rock", "Paper", "Scissors"];
 var roundWinner = '';
 var roundNumber = 1;
 
+var scorePlayer = 0;
+var scoreComputer = 0;
+
+let gameWinner = document.querySelector('#game-winner');
+
 function computerPlay() {
   return choiceArray[~~(Math.random() * choiceArray.length)];
 }
@@ -15,9 +20,7 @@ const buttons = document.querySelectorAll('button');
 buttons.forEach((button) => {
   button.addEventListener('click', () => {
     playerSelection = button.id;
-    do{
-      game();
-    }while(roundNumber<6);
+    game();
     console.log(playerSelection);
   });
 });
@@ -73,30 +76,29 @@ function playRound() {
   roundNumber++;
 }
 
-var scorePlayer = 0;
-var scoreComputer = 0;
 
 function game() {
   /**Initializing counter for round wins**/
 
 
   console.log('Round ' + roundNumber + ':');
-  playRound();
-  if (roundWinner == 'player') {
-    scorePlayer = scorePlayer + 1;
-  }
-  if (roundWinner == 'computer') {
-    scoreComputer = scoreComputer + 1;
-  }
+  if (scorePlayer < 5 && scoreComputer < 5) {
+    playRound();
+    if (roundWinner == 'player') {
+      scorePlayer = scorePlayer + 1;
+    }
+    if (roundWinner == 'computer') {
+      scoreComputer = scoreComputer + 1;
+    }
 
-  console.log('Current score>> Player : ' + scorePlayer.toString() + ' | Computer: ' + scoreComputer.toString());
-
+    console.log('Current score>> Player : ' + scorePlayer.toString() + ' | Computer: ' + scoreComputer.toString());
+  } else
   if (scorePlayer == scoreComputer) {
-    console.log('The game is drawn!');
+    gameWinner.textContent = 'The game is drawn!';
   } else if (scorePlayer > scoreComputer) {
-    console.log('Congratulations, you win the game!');
+    gameWinner.textContent ='Congratulations, you win the game!';
   } else {
-    console.log('Unlucky, you lost the game!');
+    gameWinner.textContent = 'Unlucky, you lost the game!';
   }
   let playerTotalScore = document.querySelector("#player-score");
   playerTotalScore.textContent = scorePlayer;
