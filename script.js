@@ -9,17 +9,23 @@ function computerPlay() {
 var playerSelection;
 const buttons = document.querySelectorAll('button');
 
+
+/*Add a do-while loop around game so it only goes until someone has 5 wins*/
+
+
 buttons.forEach((button) => {
   button.addEventListener('click', () => {
     playerSelection = button.id;
+    game();
     console.log(playerSelection);
   });
 });
 
-function playRound(computerSelection) {
+function playRound() {
 
-  computerSelection = computerPlay().toLowerCase();
+  var computerSelection = computerPlay().toLowerCase();
   /*draw case*/
+  console.log(computerSelection);
   if (playerSelection == computerSelection) {
     console.log('It\'s a draw!');
     roundWinner = '';
@@ -65,10 +71,12 @@ function playRound(computerSelection) {
   roundNumber++;
 }
 
+var scorePlayer = 0;
+var scoreComputer = 0;
+
 function game() {
   /**Initializing counter for round wins**/
-  var scorePlayer = 0;
-  var scoreComputer = 0;
+
 
   console.log('Round ' + roundNumber + ':');
   playRound();
@@ -89,6 +97,3 @@ function game() {
     console.log('Unlucky, you lost the game!');
   }
 }
-
-
-game();
